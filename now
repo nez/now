@@ -5,8 +5,28 @@
 host=192.168.1.61 #elasticsearch host. desde afuera puede ser 187.162.74.102 o suavebt.com que redirecciona a esa ip.
 port=9201
 hora=$(date)
-body="{ \"msg\" : {
-        \"user\" : \"$USER\"
-        \"hora\" : \"$hora\"
-        \"msg\" : \"$1\" }}"
-curl -XPUT "http://$host:$port/now" -d "$body"
+
+while getopts ":u:h" opt; do
+	case $opt in
+		u)
+			echo "user ir $OPTARG"
+			USER=$OPTARG
+			;;
+		h)
+			echo "Use: now [-u username] msg"
+			exit 1
+			;;
+	esac
+done
+
+shift; shift 
+
+body='{ "msg" : {
+        "user" : "'$USER'",
+        "hora" : "'$hora'",
+        "msg" : "'$@'" }}'
+
+# curl -XPUT "http://$host:$port/now" -d "$body"
+
+echo $USER
+echo $body
