@@ -2,14 +2,11 @@
 # Manda a ElasticSearch lo que estás haciendo
 # TODO: mandar a elasticsearch lo que estas haciendo
 
-host=192.168.1.61 #elasticsearch host
-port=9200
+host=192.168.1.61 #elasticsearch host. desde afuera puede ser 187.162.74.102 o suavebt.com que redirecciona a esa ip.
+port=9201
 hora=$(date)
-
-curl -XPUT 'http://$host.$port/now/msg' -d '{
-	"msg" : {
-		"user" : $USER
-		"hora" : $hora
-		"msg"  : $1
-	}
-}'
+body="{ \"msg\" : {
+        \"user\" : \"$USER\"
+        \"hora\" : \"$hora\"
+        \"msg\" : \"$1\" }}"
+curl -XPUT "http://$host:$port/now" -d "$body"
