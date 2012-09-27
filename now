@@ -9,7 +9,6 @@ hora=$(date)
 while getopts ":u:h" opt; do
 	case $opt in
 		u)
-			echo "user ir $OPTARG"
 			USER=$OPTARG
 			;;
 		h)
