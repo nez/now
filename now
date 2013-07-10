@@ -2,7 +2,7 @@
 # Manda a ElasticSearch lo que estás haciendo
 # TODO: mandar a elasticsearch lo que estas haciendo
 
-host=192.168.1.61 #elasticsearch host. desde afuera puede ser 187.162.74.102 o suavebt.com que redirecciona a esa ip.
+host=192.168.1.61 #elasticsearch host.
 port=9201
 hora=$(date)
 
